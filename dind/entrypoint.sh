@@ -10,7 +10,7 @@ PRE_BUILD="${7}"
 POST_BUILD="${8}"
 PRE_TEST="${9}"
 POST_TEST="${10}"
-
+SPECIFIC_PACKAGE="${11}"
 echo ''
 echo '======== Running the Docker daemon ========'
 echo ''
@@ -43,4 +43,5 @@ docker run \
   --env POST_BUILD="${POST_BUILD}" \
   --env PRE_TEST="${PRE_TEST}" \
   --env POST_TEST="${POST_TEST}" \
+  --env SPECIFIC_PACKAGE="${SPECIFIC_PACKAGE}" \
   --rm ros2-ci:latest || exit $?
