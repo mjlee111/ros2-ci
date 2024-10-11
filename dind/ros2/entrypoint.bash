@@ -114,20 +114,42 @@ then
   cd /ws/repo && echo "$PRE_TEST" && eval "$PRE_TEST" || exit $?
 fi
 
-echo ''
-echo '======== Testing the workspace ========'
-echo ''
+if [ ! -z "$SPECIFIC_PACKAGE" ]
+then
+  echo ''
+  echo '======== Running the specific package command ========'
+  echo ''
 
-cd /ws && colcon test \
-  --event-handlers console_cohesion+ \
+  cd /ws && colcon test \
+    --event-handlers console_cohesion+ \
+    --pytest-with-coverage \
+    --return-code-on-test-failure $SPECIFIC_PACKAGE || exit $?
+    
+  mkdir /ws/repo/.ws \
+    && cp -r /ws/build /ws/repo/.ws \
+    && cp -r /ws/log /ws/repo/.ws \
+    && cp -r /ws/install /ws/repo/.ws \
+    || exit $?
+fi
+
+if [ -z "$SPECIFIC_PACKAGE" ]
+then
+
+  echo ''
+  echo '======== Testing the workspace ========'
+  echo ''
+
+  cd /ws && colcon test \
+    --event-handlers console_cohesion+ \
   --pytest-with-coverage \
   --return-code-on-test-failure || exit $?
 
-mkdir /ws/repo/.ws \
-  && cp -r /ws/build /ws/repo/.ws \
-  && cp -r /ws/log /ws/repo/.ws \
-  && cp -r /ws/install /ws/repo/.ws \
-  || exit $?
+  mkdir /ws/repo/.ws \
+    && cp -r /ws/build /ws/repo/.ws \
+    && cp -r /ws/log /ws/repo/.ws \
+    && cp -r /ws/install /ws/repo/.ws \
+    || exit $?
+fi
 
 if [ ! -z "$POST_TEST" ]
 then
