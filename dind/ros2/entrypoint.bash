@@ -121,10 +121,11 @@ then
   echo ''
 
   cd /ws && colcon test \
+    --packages-select $SPECIFIC_PACKAGE \
     --event-handlers console_cohesion+ \
     --pytest-with-coverage \
-    --return-code-on-test-failure $SPECIFIC_PACKAGE || exit $?
-    
+    --return-code-on-test-failure || exit $?
+
   mkdir /ws/repo/.ws \
     && cp -r /ws/build /ws/repo/.ws \
     && cp -r /ws/log /ws/repo/.ws \
