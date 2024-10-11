@@ -86,15 +86,18 @@ then
   cd /ws/repo && echo "$PRE_BUILD" && eval "$PRE_BUILD" || exit $?
 fi
 
-echo ''
-echo '======== Building the workspace ========'
-echo ''
+if [ -z "$SPECIFIC_PACKAGE" ]
+then
+  echo ''
+  echo '======== Building the workspace ========'
+  echo ''
 
-cd /ws && colcon build \
-  --event-handlers console_cohesion+ \
-  --cmake-args || exit $?
+  cd /ws && colcon build \
+    --event-handlers console_cohesion+ \
+    --cmake-args || exit $?
 
-source install/setup.bash || exit $?
+  source install/setup.bash || exit $?
+fi
 
 if [ ! -z "$POST_BUILD" ]
 then
