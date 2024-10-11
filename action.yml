@@ -36,8 +36,8 @@ inputs:
   post-test:
     description: "The command to be run after the test process."
     required: false
-  sepecific-package:
-    description: "The Command to only build specified pakage."
+  specific-package:
+    description: "The command to only build specified package."
     required: false
 runs:
   using: 'docker'
