@@ -99,6 +99,18 @@ then
   source install/setup.bash || exit $?
 fi
 
+if [ ! -z "$SPECIFIC_PACKAGE" ]
+then
+  echo ''
+  echo '======== Building the specific package ========'
+  echo ''
+
+  cd /ws && colcon build \
+    --packages-select $SPECIFIC_PACKAGE \
+    --event-handlers console_cohesion+ \
+    --cmake-args || exit $?
+fi
+
 if [ ! -z "$POST_BUILD" ]
 then
   echo ''
