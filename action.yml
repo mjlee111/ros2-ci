@@ -39,9 +39,7 @@ inputs:
   specific-package:
     description: "The command to only build specified package."
     required: false
-  private-repos:
-    description: "External private repositories to be included as dependencies."
-    required: false
+
 runs:
   using: 'docker'
   image: 'dind/Dockerfile'
