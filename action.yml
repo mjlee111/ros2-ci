@@ -1,4 +1,4 @@
-name: 'ICHIRO ITS ROS 2 CI'
+name: 'ROS 2 CI'
 description: 'Continuous integration for ROS 2 project'
 author: "ICHIRO ITS"
 branding:
