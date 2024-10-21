@@ -57,4 +57,3 @@ runs:
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
     - '${{ inputs.specific-package }}'
-    - '${{ inputs.private-repos }}'
