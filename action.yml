@@ -1,6 +1,6 @@
-name: 'mjlee111 ROS 2 CI'
+name: 'ICHIRO ITS ROS 2 CI'
 description: 'Continuous integration for ROS 2 project'
-author: "mjlee111"
+author: "ICHIRO ITS"
 branding:
   icon: "activity"
   color: "gray-dark"
@@ -39,6 +39,9 @@ inputs:
   specific-package:
     description: "The command to only build specified package."
     required: false
+  private-repos:
+    description: "External private repositories to be included as dependencies."
+    required: false
 runs:
   using: 'docker'
   image: 'dind/Dockerfile'
@@ -54,3 +57,4 @@ runs:
     - '${{ inputs.pre-test }}'
     - '${{ inputs.post-test }}'
     - '${{ inputs.specific-package }}'
+    - '${{ inputs.private-repos }}'
