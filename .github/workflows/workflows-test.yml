@@ -10,6 +10,10 @@ jobs:
     steps:
       - name: Checking out
         uses: actions/checkout@v2.3.4
+      - name: Pre-installing dependencies
+        run: |
+          pip install --upgrade numpy
+          pip install numpy matplotlib
       - name: Testing the default configuration
         uses: ./
       - name: Testing with different distribution
