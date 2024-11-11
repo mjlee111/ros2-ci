@@ -86,6 +86,22 @@ jobs:
     external-repos: https://github.com/ros2/example_interfaces#foxy ros2/examples#foxy
 ```
 
+### Action Table
+
+| **Command**             | **Description**                                                                                     |
+|-------------------------|-----------------------------------------------------------------------------------------------------|
+| `ros2-distro`           | The ROS 2 distribution to be used. Default is "foxy".                                                |
+| `apt-packages`           | APT packages to be installed as dependencies.                                                        |
+| `pip-packages`           | Pip packages to be installed as dependencies.                                                        |
+| `external-repos`         | External repositories to be included as dependencies.                                                |
+| `pre-install`            | Command to be run before the APT and pip install process.                                            |
+| `post-install`           | Command to be run after the APT and pip install process.                                             |
+| `pre-build`              | Command to be run before the build process.                                                          |
+| `post-build`             | Command to be run after the build process.                                                           |
+| `pre-test`               | Command to be run before the test process.                                                           |
+| `post-test`              | Command to be run after the test process.                                                            |
+| `specific-package`       | Command to build only the specified package.                                                        |
+
 ## License
 
 This project is maintained by [ICHIRO ITS](https://github.com/ichiro-its) and licensed under the [MIT License](./LICENSE).
