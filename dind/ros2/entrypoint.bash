@@ -53,7 +53,8 @@ then
   mkdir -p build && cd build || exit $?
   if [ ! -z "$ADDITIONAL_CMAKE_COMMAND" ]
   then
-    echo "$ADDITIONAL_CMAKE_COMMAND" && eval "$ADDITIONAL_CMAKE_COMMAND" || exit $?
+    CMD="cmake $ADDITIONAL_CMAKE_COMMAND"
+    echo "$CMD" && eval "$CMD" || exit $?
   else
     cmake .. || exit $?
   fi
