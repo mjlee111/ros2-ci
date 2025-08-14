@@ -34,6 +34,32 @@ then
   echo "$PIP_PACKAGES" && pip3 install $PIP_PACKAGES || exit $?
 fi
 
+if [ ! -z "$ADDITIONAL_CMAKE" ]
+then
+  echo ''
+  echo '======== Installing additional CMake ========'
+  echo ''
+
+  CMD="git clone https://github.com/$ADDITIONAL_CMAKE.git"
+  echo "$CMD" && eval "$CMD" || exit $?
+
+  echo "cd $ADDITIONAL_CMAKE"
+  cd "$ADDITIONAL_CMAKE" || exit $?
+
+  echo ''
+  echo '======== Building additional CMake ========'
+  echo ''
+  mkdir -p build && cd build || exit $?
+  if [ ! -z "$ADDITIONAL_CMAKE_COMMAND" ]
+  then
+    echo "$ADDITIONAL_CMAKE_COMMAND" && eval "$ADDITIONAL_CMAKE_COMMAND" || exit $?
+  else
+    cmake .. || exit $?
+  fi
+  make -j"$(nproc)" || exit $?
+  sudo make install || exit $?
+fi
+
 if [ ! -z "$EXTERNAL_REPOS" ]
 then
   echo ''
