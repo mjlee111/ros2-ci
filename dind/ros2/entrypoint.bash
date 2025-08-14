@@ -44,7 +44,8 @@ then
   echo "$CMD" && eval "$CMD" || exit $?
 
   echo "cd $ADDITIONAL_CMAKE"
-  cd "$ADDITIONAL_CMAKE" || exit $?
+  REPO_NAME=$(echo "$ADDITIONAL_CMAKE" | cut -d '/' -f 2)
+  cd "$REPO_NAME" || exit $?
 
   echo ''
   echo '======== Building additional CMake ========'
