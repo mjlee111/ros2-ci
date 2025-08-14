@@ -40,7 +40,7 @@ then
   echo '======== Installing additional CMake ========'
   echo ''
 
-  CMD="git clone https://github.com/$ADDITIONAL_CMAKE.git"
+  CMD="git clone --recursive https://github.com/$ADDITIONAL_CMAKE.git"
   echo "$CMD" && eval "$CMD" || exit $?
 
   echo "cd $ADDITIONAL_CMAKE"
